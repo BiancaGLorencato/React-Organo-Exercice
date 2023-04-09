@@ -1,3 +1,8 @@
+React: 
+"React is a JavaScript library for building user interfaces. "
+https://legacy.reactjs.org/docs/getting-started.html
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
