@@ -1,9 +1,10 @@
+import { useState } from 'react'
 import Botao from '../Botao'
 import CampoTexto from '../CampoTexto'
 import ListaSuspensa from '../ListaSuspensa'
 import './Formulario.css'
 
-const Formulario = () => {
+const Formulario = (props) => {
     const times = [
         'Programação',
         'Front-End',
@@ -16,17 +17,49 @@ const Formulario = () => {
 
     const aoSalvar = (evento) =>{
         evento.preventDefault()
-        console.log("Form foi submetido")
+        props.colaboradorCadastrado([
+            nome,
+            cargo,
+            imagem,
+            time
+        ])
     }
+
+    const [nome, setNome] = useState('');
+    const [cargo, setCargo] = useState('');
+    const [imagem, setImagem] = useState('');
+    const [time, setTime] = useState('');
+ 
 
     return(
         <section className="formulario">
             <form onSubmit={aoSalvar}>
                 <h2>Preencha os dados para criar o card do colaborador</h2>
-                <CampoTexto Obrigatorio={true} Label="Nome"  Placeholder='Digite seu nome'></CampoTexto>
-                <CampoTexto Obrigatorio={true} Label="Cargo"  Placeholder='Digite seu cargo'></CampoTexto>
-                <CampoTexto Label="Imagem"  Placeholder='Informe o endereço da Imagem'></CampoTexto>
-                <ListaSuspensa  label="Time" Obrigatorio={true} itens={times}></ListaSuspensa>
+                <CampoTexto 
+                    Obrigatorio={true} 
+                    Label="Nome"  
+                    Placeholder='Digite seu nome'
+                    valor={nome}
+                    Alterado = {valor =>setNome(valor)}
+                />
+                <CampoTexto 
+                    Obrigatorio={true} Label="Cargo"  
+                    Placeholder='Digite seu cargo'
+                    valor={cargo} 
+                    Alterado={valor => setCargo(valor)}
+                />
+                <CampoTexto 
+                    Label="Imagem"  
+                    Placeholder='Informe o endereço da Imagem'
+                    valor={imagem} 
+                    Alterado={valor => setImagem(valor)}
+                />
+                <ListaSuspensa  
+                    label="Time" 
+                    Obrigatorio={true} 
+                    itens={times}
+                    valor={time}
+                    Alterado={valor => setTime(valor)}></ListaSuspensa>
                 <Botao>
                     Criar Card
                 </Botao>
